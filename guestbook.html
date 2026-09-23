@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>VEERTIEN14ARRCHIVE | Guestbook</title>
+
+    <link
+        rel="stylesheet"
+        href="style.css">
+
+</head>
+
+<body>
+    <canvas id="particle-canvas"></canvas>
+
+<header>
+
+    <nav class="navbar">
+
+        <div class="logo">
+
+            <img
+                src="logo.jpeg"
+                alt="Logo">
+
+            <span class="logo-text">
+                VEERTIEN<span>14ARRCHIVE</span>
+            </span>
+
+        </div>
+
+
+        <ul class="nav-menu">
+
+            <li>
+                <a href="index.html">
+                    Beranda
+                </a>
+            </li>
+
+            <li>
+                <a href="anggota.html">
+                    Anggota
+                </a>
+            </li>
+
+            <li>
+                <a href="moment.html">
+                    Moment
+                </a>
+            </li>
+
+            <li>
+                <a href="guestbook.html"
+                   class="active">
+                    Guestbook
+                </a>
+            </li>
+
+            <li>
+                <a href="kontak.html">
+                    Kontak
+                </a>
+            </li>
+
+        </ul>
+
+
+        <div class="theme-selector">
+    <button class="theme-toggle" onclick="toggleTheme()">🎨</button>
+
+    <div class="theme-menu" id="theme-menu">
+        <button onclick="setTheme('black')">🖤 Black</button>
+        <button onclick="setTheme('white')">🤍 White</button>
+        <button onclick="setTheme('midnight')">🌌 Midnight</button>
+        <button onclick="setTheme('sunset')">🌅 Sunset</button>
+    </div>
+</div>
+
+
+        <button
+            class="menu-toggle"
+            onclick="toggleMenu()">
+
+            ☰
+
+        </button>
+
+    </nav>
+
+</header>
+
+
+<section class="page-header">
+
+    <p class="section-label">
+        GUESTBOOK
+    </p>
+
+    <h1>
+        Leave Your <span>Message</span>
+    </h1>
+
+    <p>
+        Tinggalkan pesan untuk
+        VEERTIEN14ARRCHIVE.
+    </p>
+
+</section>
+
+
+<section class="guestbook">
+
+    <div class="guestbook-form">
+
+        <h2>
+            Tulis Pesan
+        </h2>
+
+        <form
+            id="guestbook-form">
+
+            <label for="guest-name">
+                Nama
+            </label>
+
+            <input
+                type="text"
+                id="guest-name"
+                placeholder="Masukkan nama..."
+                required>
+
+
+            <label for="guest-message">
+                Pesan
+            </label>
+
+            <textarea
+                id="guest-message"
+                rows="5"
+                placeholder="Tulis pesan..."
+                required></textarea>
+
+
+            <button
+                type="submit"
+                class="btn">
+
+                Kirim Pesan
+
+            </button>
+
+        </form>
+
+    </div>
+
+
+    <div class="guestbook-list">
+
+        <h2>
+            Pesan Pengunjung
+        </h2>
+
+        <div id="messages-container">
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<footer>
+
+    <p>
+        © 2026 VEERTIEN14ARRCHIVE.
+        All Rights Reserved.
+    </p>
+
+</footer>
+
+
+<script src="script.js"></script>
+
+</body>
+
+</html>

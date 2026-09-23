@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>VEERTIEN14ARRCHIVE</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <canvas id="particle-canvas"></canvas>
+    <!-- LOADING SCREEN -->
+<div id="loading-screen">
+
+    <div class="loader-content">
+
+        <img src="logo.jpeg" alt="VEERTIEN14ARRCHIVE">
+
+        <h1>
+            VEERTIEN
+            <span>14ARRCHIVE</span>
+        </h1>
+
+        <div class="loader-bar">
+            <div></div>
+        </div>
+
+        <p>Loading...</p>
+
+    </div>
+
+</div>
+
+<header>
+    <nav class="navbar">
+
+        <div class="logo">
+            <img src="logo.jpeg" alt="Logo Veertien14arrchive"> <span class="logo-text"> VEERTIEN<span>14ARRCHIVE</span> </span> </div>
+
+        <ul class="nav-menu">
+            <li>
+                <a href="index.html" class="active">Beranda</a>
+            </li>
+
+            <li>
+                <a href="anggota.html">Anggota</a>
+            </li>
+
+            <li>
+                <a href="moment.html">Moment</a>
+            </li>
+
+            <li>
+                <a href="guestbook.html">Guestbook</a>
+            </li>
+
+            <li>
+                <a href="kontak.html">Kontak</a>
+            </li>
+        </ul>
+
+        <button class="menu-toggle" onclick="toggleMenu()">
+            ☰
+        </button>
+
+        <div class="theme-selector">
+    <button class="theme-toggle" onclick="toggleTheme()">🎨</button>
+
+    <div class="theme-menu" id="theme-menu">
+        <button onclick="setTheme('black')">🖤 Black</button>
+        <button onclick="setTheme('white')">🤍 White</button>
+        <button onclick="setTheme('midnight')">🌌 Midnight</button>
+        <button onclick="setTheme('sunset')">🌅 Sunset</button>
+    </div>
+</div>
+
+<button class="menu-toggle" onclick="toggleMenu()">
+    ☰
+</button>
+
+    </nav>
+</header>
+
+
+<!-- HERO -->
+
+<section class="hero">
+    <div class="hero-content">
+
+        <div class="welcome-logo">
+            <div class="welcome-text">
+                <p class="small-title">WELCOME TO</p>
+
+                <h1>
+                    VEERTIEN<br>
+                    <span>14ARRCHIVE</span>
+                </h1>
+
+                <p>
+                    Sebuah ruang untuk menyimpan cerita,
+                    kenangan, tawa, musik, dan momen
+                    bersama.
+                </p>
+
+                <div class="hero-buttons">
+                    <a href="anggota.html" class="btn">Lihat Anggota</a>
+                    <a href="kontak.html" class="btn secondary">Hubungi Kami</a>
+                </div>
+            </div>
+
+            <!-- LOGO DI SEBELAH KANAN -->
+            <div class="welcome-logo-image">
+                <img src="logo.jpeg" alt="Logo VEERTIEN14ARRCHIVE">
+            </div>
+        </div>
+
+    </div>
+</section>
+
+
+<!-- GAMBAR -->
+
+<section class="gallery">
+
+    <div class="section-title">
+
+        <p class="section-label">
+            OUR MEMORIES
+        </p>
+
+        <h2>
+            Moment <span>14Archive</span>
+        </h2>
+
+        <p>
+            Beberapa momen yang menjadi bagian
+            dari perjalanan Veertien14arrchive.
+        </p>
+
+    </div>
+
+
+    <div class="gallery-container">
+
+        <div class="gallery-image main-image">
+
+            <img
+                src="moment20.jpeg"
+                alt="Foto Tongkrongan">
+
+            <div class="image-caption">
+                <h3>Our Crew</h3>
+                <p>One group, many stories.</p>
+            </div>
+
+        </div>
+
+
+        <div class="gallery-image">
+
+            <img
+                src="gambar1.jpeg"
+                alt="Foto Anggota">
+
+            <div class="image-caption">
+                <h3>Members</h3>
+                <p>satu tongkrongan.</p>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section class="home-slideshow">
+
+    <div class="slideshow-header">
+        <p>OUR MEMORIES</p>
+        <h2>Moment VEERTIEN14ARRCHIVE</h2>
+    </div>
+
+    <div class="slideshow">
+
+        <img src="gambar1.jpeg" class="slide active" alt="Moment 01">
+        <img src="moment20.jpeg" class="slide" alt="Moment 02">
+        <img src="moment23.jpeg" class="slide" alt="Moment 03">
+        <img src="moment32.jpeg" class="slide" alt="Moment 04">
+        <img src="moment30.jpeg" class="slide" alt="Moment 05">
+
+        <button class="slide-prev" onclick="changeSlide(-1)">‹</button>
+        <button class="slide-next" onclick="changeSlide(1)">›</button>
+
+        <div class="slide-dots">
+            <span class="dot active" onclick="showSlide(0)"></span>
+            <span class="dot" onclick="showSlide(1)"></span>
+            <span class="dot" onclick="showSlide(2)"></span>
+            <span class="dot" onclick="showSlide(3)"></span>
+            <span class="dot" onclick="showSlide(4)"></span>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- TENTANG -->
+
+<section class="about">
+
+    <div>
+
+        <p class="section-label">
+            ABOUT US
+        </p>
+
+        <h2>
+            Bukan sekadar <span>tongkrongan.</span>
+        </h2>
+
+        <p>
+            VEERTIEN14ARRCHIVE adalah tempat untuk
+            mengabadikan perjalanan sebuah tongkrongan.
+            Mulai dari nongkrong, bermain game,
+            riding, mendengarkan musik, sampai
+            berbagai momen random yang tidak terlupakan.
+        </p>
+
+    </div>
+
+
+    <div class="about-cards">
+
+        <div class="card">
+
+            <div class="icon">
+                ☕
+            </div>
+
+            <h3>
+                Nongkrong
+            </h3>
+
+            <p>
+                Tempat berkumpul dan berbagi cerita.
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="icon">
+                🎵
+            </div>
+
+            <h3>
+                Music
+            </h3>
+
+            <p>
+                Setiap anggota punya lagu favoritnya sendiri.
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="icon">
+                📸
+            </div>
+
+            <h3>
+                Memories
+            </h3>
+
+            <p>
+                Menyimpan berbagai momen bersama.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+<footer>
+
+    <p>
+        © 2026 VEERTIEN14ARRCHIVE.
+        All Rights Reserved.
+    </p>
+
+</footer>
+
+
+<script src="script.js"></script>
+
+</body>
+</html>

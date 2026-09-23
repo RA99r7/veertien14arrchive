@@ -1,0 +1,965 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>VEERTIEN14ARRCHIVE | Anggota</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <canvas id="particle-canvas"></canvas>
+
+<header>
+    <nav class="navbar">
+
+        <div class="logo">
+            VEERTIEN<span>14ARRCHIVE</span>
+        </div>
+
+        <ul class="nav-menu">
+            <li>
+                <a href="index.html">
+                    Beranda
+                </a>
+            </li>
+
+            <li>
+                <a href="anggota.html" class="active">
+                    Anggota
+                </a>
+            </li>
+
+            <li>
+                <a href="moment.html">
+                    Moment
+                </a>
+            </li>
+            <li>
+                <a href="guestbook.html">Guestbook</a>
+            </li>
+
+            <li>
+                <a href="kontak.html">
+                    Kontak
+                </a>
+            </li>
+        </ul>
+
+        <button
+            class="menu-toggle"
+            onclick="toggleMenu()"
+        >
+            ☰
+        </button>
+
+       <div class="theme-selector">
+    <button class="theme-toggle" onclick="toggleTheme()">🎨</button>
+
+    <div class="theme-menu" id="theme-menu">
+        <button onclick="setTheme('black')">🖤 Black</button>
+        <button onclick="setTheme('white')">🤍 White</button>
+        <button onclick="setTheme('midnight')">🌌 Midnight</button>
+        <button onclick="setTheme('sunset')">🌅 Sunset</button>
+    </div>
+</div>
+
+<button class="menu-toggle" onclick="toggleMenu()">
+    ☰
+</button>
+
+    </nav>
+</header>
+
+
+<!-- HEADER -->
+<section class="page-header">
+
+    <p class="section-label">
+        OUR CREW
+    </p>
+
+    <h1>
+        18 <span>Members</span>
+    </h1>
+
+    <p>
+        Kenalan dengan anggota
+        VEERTIEN14ARRCHIVE.
+    </p>
+
+</section>
+
+<!-- ANGGOTA -->
+<section class="members">
+    
+<!-- 01 -->
+<div class="member-card">
+
+    <img
+        class="member-photo"
+        src="anggota1.jpeg"
+        alt="Foto Adang"
+        onclick="openMemberLightbox(
+        'anggota1.jpeg',
+        'Adang',
+        ''
+    )">
+
+    <div class="avatar">
+        01
+    </div>
+
+    <h2>
+        Adang
+    </h2>
+
+    </p>
+
+    <div class="music-player">
+
+        <p>
+            🎵 Lagu Adang
+        </p>
+
+        <audio
+            id="music1"
+            src="lagu1.mp3"
+        ></audio>
+
+        <button
+            class="play-btn"
+            onclick="playMusic('music1', this)"
+        >
+            ▶ Play
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- 02 -->
+<div class="member-card">
+
+    <img
+        class="member-photo"
+        src="anggota2.jpeg"
+        alt="Foto Keenan"
+        onclick="openMemberLightbox(
+        'anggota2.jpg',
+        'Keenan',
+        ''
+    )">
+
+    <div class="avatar">
+        02
+    </div>
+
+    <h2>
+        Keenan
+    </h2>
+
+    <div class="music-player">
+
+        <p>
+            🎵 Lagu Keenan
+        </p>
+
+        <audio
+            id="music2"
+            src="lagu2.mp3"
+        ></audio>
+
+        <button
+            class="play-btn"
+            onclick="playMusic('music2', this)"
+        >
+            ▶ Play
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- 03 -->
+<div class="member-card">
+
+    <img
+        class="member-photo"
+        src="images/anggota3.jpg"
+        alt="Foto Akis"
+        onclick="openMemberLightbox(
+        'anggota3.jpg',
+        'Akis',
+        ''
+    )">
+
+    <div class="avatar">
+        03
+    </div>
+
+    <h2>
+        Akis
+    </h2>
+
+    <div class="music-player">
+
+        <p>
+            🎵 Lagu Akis
+        </p>
+
+        <audio
+            id="music3"
+            src="music/lagu3.mp3"
+        ></audio>
+
+        <button
+            class="play-btn"
+            onclick="playMusic('music3', this)"
+        >
+            ▶ Play
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- 04 -->
+<div class="member-card">
+
+    <img
+        class="member-photo"
+        src="anggota4.jpeg"
+        alt="Foto Epul"
+        onclick="openMemberLightbox(
+        'anggota4.jpeg',
+        'Epul',
+        ''
+    )">
+
+    <div class="avatar">
+        04
+    </div>
+
+    <h2>
+        Epul
+    </h2>
+
+    </p>
+
+    <div class="music-player">
+
+        <p>
+            🎵 Lagu Epul
+        </p>
+
+        <audio
+            id="music4"
+            src="lagu4.mp3"
+        ></audio>
+
+        <button
+            class="play-btn"
+            onclick="playMusic('music4', this)"
+        >
+            ▶ Play
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- 05 -->
+<div class="member-card">
+
+    <img
+        class="member-photo"
+        src="images/anggota5.jpg"
+        alt="Foto Fajar/Ajay"
+        onclick="openMemberLightbox(
+        'anggota5.jpg',
+        'Fajar/ajay',
+        ''
+    )">
+
+    <div class="avatar">
+        05
+    </div>
+
+    <h2>
+        Fajar/ajay 
+    </h2>
+
+    </p>
+
+    <div class="music-player">
+
+        <p>
+            🎵 Lagu Fajar/ajay 
+        </p>
+
+        <audio
+            id="music5"
+            src="music/lagu5.mp3"
+        ></audio>
+
+        <button
+            class="play-btn"
+            onclick="playMusic('music5', this)"
+        >
+            ▶ Play
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- 06 -->
+<div class="member-card">
+
+    <img
+        class="member-photo"
+        src="images/anggota6.jpg"
+        alt="Foto Raya"
+        onclick="openMemberLightbox(
+        'anggota6.jpg',
+        'Raya',
+        ''
+    )">
+
+    <div class="avatar">
+        06
+    </div>
+
+    <h2>
+        Raya
+    </h2>
+
+    </p>
+
+    <div class="music-player">
+
+        <p>
+            🎵 Lagu Raya
+        </p>
+
+        <audio
+            id="music6"
+            src="music/lagu6.mp3"
+        ></audio>
+
+        <button
+            class="play-btn"
+            onclick="playMusic('music6', this)"
+        >
+            ▶ Play
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- 07 -->
+<div class="member-card">
+
+    <img
+        class="member-photo"
+        src="images/anggota7.jpg"
+        alt="Foto Jobin"
+        onclick="openMemberLightbox(
+        'anggota7.jpg',
+        'Jobin',
+        ''
+    )">
+    
+
+    <div class="avatar">
+        07
+    </div>
+
+    <h2>
+        Jobin
+    </h2>
+
+    </p>
+
+    <div class="music-player">
+
+        <p>
+            🎵 Lagu Jobin
+        </p>
+
+        <audio
+            id="music7"
+            src="music/lagu7.mp3"
+        ></audio>
+
+        <button
+            class="play-btn"
+            onclick="playMusic('music7', this)"
+        >
+            ▶ Play
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- 08 -->
+<div class="member-card">
+
+    <img
+        class="member-photo"
+        src="images/anggota8.jpg"
+        alt="Foto Jon"
+        onclick="openMemberLightbox(
+        'anggota8.jpg',
+        'Jon',
+        ''
+    )">
+    
+
+    <div class="avatar">
+        08
+    </div>
+
+    <h2>
+        Jon
+    </h2>
+
+    </p>
+
+    <div class="music-player">
+
+        <p>
+            🎵 Lagu Jon
+        </p>
+
+        <audio
+            id="music8"
+            src="music/lagu8.mp3"
+        ></audio>
+
+        <button
+            class="play-btn"
+            onclick="playMusic('music8', this)"
+        >
+            ▶ Play
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- 09 -->
+<div class="member-card">
+
+    <img
+        class="member-photo"
+        src="images/anggota9.jpg"
+        alt="Foto Abil"
+        onclick="openMemberLightbox(
+        'anggota9.jpg',
+        'Abil',
+        ''
+    )">
+    
+
+    <div class="avatar">
+        09
+    </div>
+
+    <h2>
+        Abil
+    </h2>
+
+    <div class="music-player">
+
+        <p>
+            🎵 Lagu Abil
+        </p>
+
+        <audio
+            id="music9"
+            src="music/lagu9.mp3"
+        ></audio>
+
+        <button
+            class="play-btn"
+            onclick="playMusic('music9', this)"
+        >
+            ▶ Play
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- 10 -->
+<div class="member-card">
+
+    <img
+        class="member-photo"
+        src="anggota10.jpeg"
+        alt="Foto Agha"
+        onclick="openMemberLightbox(
+        'anggota10.jpeg',
+        'Agha',
+        ''
+    )">
+
+    <div class="avatar">
+        10
+    </div>
+
+    <h2>
+      Agha
+     </h2> 
+
+    </p>
+
+    <div class="music-player">
+
+        <p>
+            🎵 Lagu Agha
+        </p>
+
+        <audio
+            id="music10"
+            src="lagu10.mp3"
+        ></audio>
+
+        <button
+            class="play-btn"
+            onclick="playMusic('music10', this)"
+        >
+            ▶ Play
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- 11 -->
+<div class="member-card">
+
+    <img
+        class="member-photo"
+        src="images/anggota11.jpg"
+        alt="Foto Adit"
+        onclick="openMemberLightbox(
+        'anggota11.jpg',
+        'Adit',
+        ''
+    )">
+    
+
+    <div class="avatar">
+        11
+    </div>
+
+    <h2>
+        Adit
+    </h2>
+
+    <p class="role">
+        The Strategist
+    </p>
+
+    <div class="music-player">
+
+        <p>
+            🎵 Lagu Adit
+        </p>
+
+        <audio
+            id="music11"
+            src="music/lagu11.mp3"
+        ></audio>
+
+        <button
+            class="play-btn"
+            onclick="playMusic('music11', this)"
+        >
+            ▶ Play
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- 12 -->
+<div class="member-card">
+
+    <img
+        class="member-photo"
+        src="images/anggota12.jpg"
+        alt="Foto Rayyan"
+        onclick="openMemberLightbox(
+        'anggota12.jpg',
+        'Rayyan',
+        ''
+    )">
+    
+
+    <div class="avatar">
+        12
+    </div>
+
+    <h2>
+        Rayyan
+    </h2>
+
+    <div class="music-player">
+
+        <p>
+            🎵 Lagu Rayyan
+        </p>
+
+        <audio
+            id="music12"
+            src="music/lagu12.mp3"
+        ></audio>
+
+        <button
+            class="play-btn"
+            onclick="playMusic('music12', this)"
+        >
+            ▶ Play
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- 13 -->
+<div class="member-card">
+
+    <img
+        class="member-photo"
+        src="images/anggota13.jpg"
+        alt="Foto Fardhan"
+        onclick="openMemberLightbox(
+        'anggota13.jpg',
+        'Fardhan',
+        ''
+    )">
+    
+
+    <div class="avatar">
+        13
+    </div>
+
+    <h2>
+        Fardhan
+    </h2>
+
+    <div class="music-player">
+
+        <p>
+            🎵 Lagu Fardhan
+        </p>
+
+        <audio
+            id="music13"
+            src="music/lagu13.mp3"
+        ></audio>
+
+        <button
+            class="play-btn"
+            onclick="playMusic('music13', this)"
+        >
+            ▶ Play
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- 14 -->
+<div class="member-card">
+
+    <img
+        class="member-photo"
+        src="images/anggota14.jpg"
+        alt="Foto Rezaldy/dika"
+        onclick="openMemberLightbox(
+            'anggota14.jpg',
+            'Rezaldy/dika',
+            ''
+        )"
+    >
+
+    <div class="avatar">
+        14
+    </div>
+
+    <h2>
+        Rezaldy/dika
+    </h2>
+
+    <div class="music-player">
+
+        <p>
+            🎵 Lagu Rezaldy/dika 
+        </p>
+
+        <audio
+            id="music14"
+            src="music/lagu14.mp3"
+        ></audio>
+
+        <button
+            class="play-btn"
+            onclick="playMusic('music14', this)"
+        >
+            ▶ Play
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- 15 -->
+<div class="member-card">
+
+    <img
+        class="member-photo"
+        src="images/anggota15.jpg"
+        alt="Foto Kila"
+        onclick="openMemberLightbox(
+            'anggota15.jpg',
+            'Kila',
+            ''
+        )"
+    >
+
+    <div class="avatar">
+        15
+    </div>
+
+    <h2>
+        Kila
+    </h2>
+
+    <div class="music-player">
+
+        <p>
+            🎵 Lagu Kila
+        </p>
+
+        <audio
+            id="music15"
+            src="music/lagu15.mp3"
+        ></audio>
+
+        <button
+            class="play-btn"
+            onclick="playMusic('music15', this)"
+        >
+            ▶ Play
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- 16 -->
+<div class="member-card">
+
+    <img
+        class="member-photo"
+        src="images/anggota16.jpg"
+        alt="Foto Eji"
+        onclick="openMemberLightbox(
+            'anggota16.jpg',
+            'Eji',
+            ''
+        )"
+    >
+
+    <div class="avatar">
+        16
+    </div>
+
+    <h2>
+        Eji
+    </h2>
+
+    <div class="music-player">
+
+        <p>
+            🎵 Lagu Eji
+        </p>
+
+        <audio
+            id="music16"
+            src="music/lagu16.mp3"
+        ></audio>
+
+        <button
+            class="play-btn"
+            onclick="playMusic('music16', this)"
+        >
+            ▶ Play
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- 17 -->
+<div class="member-card">
+
+    <img
+        class="member-photo"
+        src="images/anggota17.jpg"
+        alt="Foto Evan"
+        onclick="openMemberLightbox(
+            'anggota17.jpg',
+            'Evan',
+            ''
+        )"
+    >
+
+    <div class="avatar">
+        17
+    </div>
+
+    <h2>
+        Evan
+    </h2>
+
+    <div class="music-player">
+
+        <p>
+            🎵 Lagu Evan
+        </p>
+
+        <audio
+            id="music17"
+            src="music/lagu17.mp3"
+        ></audio>
+
+        <button
+            class="play-btn"
+            onclick="playMusic('music17', this)"
+        >
+            ▶ Play
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- 18 -->
+<div class="member-card">
+
+    <img
+        class="member-photo"
+        src="anggota18.jpeg"
+        alt="Foto Rafka"
+        onclick="openMemberLightbox(
+            'anggota18.jpeg',
+            'Rafka',
+            ''
+        )"
+    >
+
+    <div class="avatar">
+        18
+    </div>
+
+    <h2>
+        Rafka
+    </h2>
+
+    <div class="music-player">
+
+        <p>
+            🎵 Lagu Rafka
+        </p>
+
+        <audio
+            id="music18"
+            src="lagu18.mp3"
+        ></audio>
+
+        <button
+            class="play-btn"
+            onclick="playMusic('music18', this)"
+        >
+            ▶ Play
+        </button>
+
+    </div>
+
+</div>
+
+
+</section>
+
+<footer>
+    <p>
+        © 2026 VEERTIEN14ARRCHIVE.
+        All Rights Reserved.
+    </p>
+</footer>
+
+
+<script src="script.js"></script>
+
+<div id="member-lightbox" class="member-lightbox">
+
+    <button
+        class="member-lightbox-close"
+        onclick="closeMemberLightbox()">
+        ×
+    </button>
+
+    <div class="member-lightbox-content">
+
+        <img
+            id="member-lightbox-image"
+            src=""
+            alt="Member"
+        >
+
+        <h2 id="member-lightbox-name">
+            Nama
+        </h2>
+
+        <p id="member-lightbox-number">
+            Member #00
+        </p>
+
+    </div>
+
+</div>
+
+</body>
+</html>

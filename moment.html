@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>VEERTIEN14ARRCHIVE | Moment</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+<canvas id="particle-canvas"></canvas>
+    <!-- NAVBAR -->
+    <header>
+        <nav class="navbar">
+
+            <div class="logo">
+                <img src="logo.jpeg" alt="Logo Veertien14arrchive">
+
+                <span class="logo-text">
+                    VEERTIEN<span>14ARRCHIVE</span>
+                </span>
+            </div>
+
+            <ul class="nav-menu">
+                <li>
+                    <a href="index.html">Beranda</a>
+                </li>
+
+                <li>
+                    <a href="anggota.html">Anggota</a>
+                </li>
+
+                <li>
+                    <a href="moment.html" class="active">Moment</a>
+                </li>
+
+                <li>
+                    <a href="guestbook.html">Guestbook</a>
+                </li>
+
+                <li>
+                    <a href="kontak.html">Kontak</a>
+                </li>
+            </ul>
+
+            <button class="menu-toggle" onclick="toggleMenu()">
+                ☰
+            </button>
+
+            <div class="theme-selector">
+    <button class="theme-toggle" onclick="toggleTheme()">🎨</button>
+
+    <div class="theme-menu" id="theme-menu">
+        <button onclick="setTheme('black')">🖤 Black</button>
+        <button onclick="setTheme('white')">🤍 White</button>
+        <button onclick="setTheme('midnight')">🌌 Midnight</button>
+        <button onclick="setTheme('sunset')">🌅 Sunset</button>
+    </div>
+</div>
+
+<button class="menu-toggle" onclick="toggleMenu()">
+    ☰
+</button>
+
+        </nav>
+    </header>
+
+
+    <!-- PAGE HEADER -->
+    <section class="page-header">
+
+        <p class="section-label">
+            OUR MOMENTS
+        </p>
+
+        <h1>
+            Moment <span>14Archive</span>
+        </h1>
+
+        <p>
+            Kumpulan video dan foto dari perjalanan
+            VEERTIEN14ARRCHIVE.
+        </p>
+
+    </section>
+
+
+    <!-- VIDEO -->
+    <section class="moment-video">
+
+        <div class="section-title">
+
+            <p class="section-label">
+                FEATURED VIDEO
+            </p>
+
+            <h2>
+                Our <span>Story</span>
+            </h2>
+
+        </div>
+
+        <div class="video-container">
+
+            <video controls poster="moment1.jpeg">
+                <source src="moment.mp4" type="video/mp4">
+
+                Browser kamu tidak mendukung video.
+            </video>
+
+        </div>
+
+    </section>
+
+
+    <!-- 50 FOTO -->
+    <section class="moment-gallery">
+
+        <div class="section-title">
+
+            <p class="section-label">
+                PHOTO ARCHIVE
+            </p>
+
+        </div>
+
+
+        <div class="moment-grid">
+
+            <div class="moment-card"
+                 onclick="openLightbox(0, 'gambar1.jpeg', 'Moment 01')">
+                <img src="gambar1.jpeg" alt="Moment 1">
+            </div>
+
+            <div class="moment-card"
+                onclick="openLightbox(1, 'gambar2.jpeg', 'Moment 02')">
+                <img src="gambar2.jpeg" alt="Moment 2">
+            </div>
+
+            <div class="moment-card"
+                onclick="openLightbox(2, 'moment3.jpeg', 'Moment 03')">
+                <img src="moment3.jpeg" alt="Moment 3">
+            </div>
+
+            <div class="moment-card"
+                onclick="openLightbox(3, 'moment4.jpeg', 'Moment 04')">
+                <img src="moment4.jpeg" alt="Moment 4">
+            </div>
+
+            <div class="moment-card"
+                onclick="openLightbox(4, 'moment5.jpeg', 'Moment 05')">
+                <img src="moment5.jpeg" alt="Moment 5">
+            </div>
+
+            <div class="moment-card"
+                onclick="openLightbox(5, 'moment6.jpeg', 'Moment 06')">
+                <img src="moment6.jpeg" alt="Moment 6">
+            </div>
+
+            <div class="moment-card"
+                onclick="openLightbox(6, 'moment7.jpeg', 'Moment 07')">
+                <img src="moment7.jpeg" alt="Moment 7">
+            </div>
+
+            <div class="moment-card"
+                onclick="openLightbox(7, 'moment8.jpeg', 'Moment 08')">
+                <img src="moment8.jpeg" alt="Moment 8">
+            </div>
+
+            <div class="moment-card"
+                onclick="openLightbox(8, 'moment9.jpeg', 'Moment 09')">
+                <img src="moment9.jpeg" alt="Moment 9">
+            </div>
+
+            <div class="moment-card"
+                onclick="openLightbox(9, 'moment10.jpeg', 'Moment 10')">
+                <img src="moment10.jpeg" alt="Moment 10">
+            </div>
+
+            <div class="moment-card"
+                onclick="openLightbox(10, 'moment11.jpeg', 'Moment 11')">
+                <img src="moment11.jpeg" alt="Moment 11">
+            </div>
+
+            <div class="moment-card"
+                onclick="openLightbox(11, 'moment12.jpeg', 'Moment 12')">
+                <img src="moment12.jpeg" alt="Moment 12">
+            </div>
+
+            <div class="moment-card"
+                onclick="openLightbox(12, 'moment13.jpeg', 'Moment 13')">
+                <img src="moment13.jpeg" alt="Moment 13">
+            </div>
+
+            <div class="moment-card"
+                onclick="openLightbox(13, 'moment14.jpeg', 'Moment 14')">
+                <img src="moment14.jpeg" alt="Moment 14">
+            </div>
+
+            <div class="moment-card"
+                onclick="openLightbox(14, 'moment15.jpeg', 'Moment 15')">
+                <img src="moment15.jpeg" alt="Moment 15">
+            </div>
+
+            <div class="moment-card"
+                onclick="openLightbox(15, 'moment16.jpeg', 'Moment 16')">
+                <img src="moment16.jpeg" alt="Moment 16">
+            </div>
+
+            <div class="moment-card"
+                onclick="openLightbox(16, 'moment17.jpeg', 'Moment 17')">
+                <img src="moment17.jpeg" alt="Moment 17">
+            </div>
+
+            <div class="moment-card"
+                onclick="openLightbox(17, 'moment18.jpeg', 'Moment 18')">
+                <img src="moment18.jpeg" alt="Moment 18">
+            </div>
+
+            <div class="moment-card"
+                onclick="openLightbox(18, 'moment19.jpeg', 'Moment 19')">
+                <img src="moment19.jpeg" alt="Moment 19">
+            </div>
+
+            <div class="moment-card"
+                onclick="openLightbox(19, 'moment20.jpeg', 'Moment 20')">
+                <img src="moment20.jpeg" alt="Moment 20">
+            </div>
+
+            <div class="moment-card"
+                onclick="openLightbox(20, 'moment21.jpeg', 'Moment 21')">
+                <img src="moment21.jpeg" alt="Moment 21">
+            </div>
+
+            <div class="moment-card"
+                onclick="openLightbox(21, 'moment22.jpeg', 'Moment 22')">
+                <img src="moment22.jpeg" alt="Moment 22">
+            </div>
+
+            <div class="moment-card"
+                onclick="openLightbox(22, 'moment23.jpeg', 'Moment 23')">
+                <img src="moment23.jpeg" alt="Moment 23">
+            </div>
+
+            <div class="moment-card"
+                onclick="openLightbox(23, 'moment24.jpeg', 'Moment 24')">
+                <img src="moment24.jpeg" alt="Moment 24">
+            </div>
+
+            <div class="moment-card"
+                onclick="openLightbox(24, 'moment25.jpeg', 'Moment 25')">
+                <img src="moment25.jpeg" alt="Moment 25">
+            </div>
+
+            <div class="moment-card"
+                onclick="openLightbox(25, 'moment26.jpeg', 'Moment 26')">
+                <img src="moment26.jpeg" alt="Moment 26">
+            </div>
+
+            <div class="moment-card"
+                onclick="openLightbox(26, 'moment27.jpeg', 'Moment 27')">
+                <img src="moment27.jpeg" alt="Moment 27">
+            </div>
+
+            <div class="moment-card"
+                onclick="openLightbox(27, 'moment28.jpeg', 'Moment 28')">
+                <img src="moment28.jpeg" alt="Moment 28">
+            </div>
+
+            <div class="moment-card"
+                onclick="openLightbox(28, 'moment29.jpeg', 'Moment 29')">
+                <img src="moment29.jpeg" alt="Moment 29">
+            </div>
+
+            <div class="moment-card"
+                onclick="openLightbox(29, 'moment30.jpeg', 'Moment 30')">
+                <img src="moment30.jpeg" alt="Moment 30">
+            </div>
+
+            <div class="moment-card"
+                onclick="openLightbox(30, 'moment31.jpeg', 'Moment 31')">
+                <img src="moment31.jpeg" alt="Moment 31">
+            </div>
+
+            <div class="moment-card"
+                onclick="openLightbox(31, 'moment32.jpeg', 'Moment 32')">
+                <img src="moment32.jpeg" alt="Moment 32">
+            </div>
+
+            <div class="moment-card"
+                onclick="openLightbox(32, 'moment33.jpeg', 'Moment 33')">
+                <img src="moment33.jpeg" alt="Moment 33">
+            </div>
+
+            <div class="moment-card"
+                onclick="openLightbox(33, 'moment34.jpeg', 'Moment 34')">
+                <img src="moment34.jpeg" alt="Moment 34">
+            </div>
+
+            <div class="moment-card"
+                onclick="openLightbox(34, 'moment35.jpeg', 'Moment 35')">
+                <img src="moment35.jpeg" alt="Moment 35">
+                <span>Moment 35</span>
+            </div>
+
+            <div class="moment-card"
+                onclick="openLightbox(35, 'moment36.jpeg', 'Moment 36')">
+                <img src="moment36.jpeg" alt="Moment 36">
+                <span>Moment 36</span>
+            </div>
+
+            <div class="moment-card"
+                onclick="openLightbox(36, 'moment37.jpeg', 'Moment 37')">
+                <img src="moment37.jpeg" alt="Moment 37">
+                <span>Moment 37</span>
+            </div>
+
+            <div class="moment-card"
+                onclick="openLightbox(37, 'moment38.jpeg', 'Moment 38')">
+                <img src="moment38.jpeg" alt="Moment 38">
+                <span>Moment 38</span>
+            </div>
+
+            <div class="moment-card"
+                onclick="openLightbox(38, 'moment39.jpeg', 'Moment 39')">
+                <img src="moment39.jpeg" alt="Moment 39">
+                <span>Moment 39</span>
+            </div>
+
+            <div class="moment-card"
+                onclick="openLightbox(39, 'moment40.jpeg', 'Moment 40')">
+                <img src="moment40.jpeg" alt="Moment 40">
+                <span>Moment 40</span>
+            </div>
+
+            <div class="moment-card"
+                onclick="openLightbox(40, 'moment41.jpeg', 'Moment 41')">
+                <img src="moment41.jpeg" alt="Moment 41">
+                <span>Moment 41</span>
+            </div>
+
+            <div class="moment-card"
+                onclick="openLightbox(41, 'moment42.jpeg', 'Moment 42')">
+                <img src="moment42.jpeg" alt="Moment 42">
+                <span>Moment 42</span>
+            </div>
+
+            <div class="moment-card"
+                onclick="openLightbox(42, 'moment43.jpeg', 'Moment 43')">
+                <img src="moment43.jpeg" alt="Moment 43">
+                <span>Moment 43</span>
+            </div>
+
+            <div class="moment-card"
+                onclick="openLightbox(43, 'moment44.jpeg', 'Moment 44')">
+                <img src="moment44.jpeg" alt="Moment 44">
+                <span>Moment 44</span>
+            </div>
+
+            <div class="moment-card"
+                onclick="openLightbox(44, 'moment45.jpeg', 'Moment 45')">
+                <img src="moment45.jpeg" alt="Moment 45">
+                <span>Moment 45</span>
+            </div>
+
+            <div class="moment-card"
+                onclick="openLightbox(45, 'moment46.jpeg', 'Moment 46')">
+                <img src="moment46.jpeg" alt="Moment 46">
+                <span>Moment 46</span>
+            </div>
+
+            <div class="moment-card"
+                onclick="openLightbox(46, 'moment47.jpeg', 'Moment 47')">
+                <img src="moment47.jpeg" alt="Moment 47">
+                <span>Moment 47</span>
+            </div>
+
+            <div class="moment-card"
+                onclick="openLightbox(47, 'moment48.jpeg', 'Moment 48')">
+                <img src="moment48.jpeg" alt="Moment 48">
+                <span>Moment 48</span>
+            </div>
+
+            <div class="moment-card"
+                onclick="openLightbox(48, 'moment49.jpeg', 'Moment 49')">
+                <img src="moment49.jpeg" alt="Moment 49">
+                <span>Moment 49</span>
+            </div>
+
+            <div class="moment-card"
+                onclick="openLightbox(49, 'moment50.jpeg', 'Moment 50')">
+                <img src="moment50.jpeg" alt="Moment 50">
+                <span>Moment 50</span>
+            </div>
+
+            <div class="moment-card"
+                onclick="openLightbox(50, 'moment51.jpeg', 'Moment 51')">
+                <img src="moment51.jpeg" alt="Moment 51">
+                <span>Moment 51</span>
+            </div>
+
+            <div class="moment-card"
+                onclick="openLightbox(51, 'moment52.jpeg', 'Moment 52')">
+                <img src="moment52.jpeg" alt="Moment 52">
+                <span>Moment 52</span>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox">
+
+    <button class="lightbox-close" onclick="closeLightbox()">
+        ×
+    </button>
+
+    <button class="lightbox-prev" onclick="changePhoto(-1)">
+        ‹
+    </button>
+
+    <div class="lightbox-content">
+        <img id="lightbox-image" src="" alt="Moment">
+        <p id="lightbox-caption"></p>
+    </div>
+
+    <button class="lightbox-next" onclick="changePhoto(1)">
+        ›
+    </button>
+
+</div>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>
+            © 2026 VEERTIEN14ARRCHIVE.
+            All Rights Reserved.
+        </p>
+    </footer>
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
