@@ -1,0 +1,17 @@
+{
+    "name": "VEERTIEN14ARRCHIVE",
+    "short_name": "VEERTIEN14",
+    "description": "Archive VEERTIEN14ARRCHIVE",
+    "start_url": "index.html",
+    "display": "standalone",
+    "background_color": "#000000",
+    "theme_color": "#000000",
+    "orientation": "portrait-primary",
+    "icons": [
+        {
+            "src": "logo.jpeg",
+            "sizes": "512x512",
+            "type": "image/jpeg"
+        }
+    ]
+}
