@@ -1,17 +1,26 @@
-/* =========================
+/* =====================================================
+   VEERTIEN14ARRCHIVE - FINAL SCRIPT
+===================================================== */
+
+
+/* =====================================================
    MUSIC PLAYER
-========================= */
+===================================================== */
 
 function playMusic(id, button) {
 
     const audio = document.getElementById(id);
 
     if (!audio) {
-        console.error("Audio dengan ID '" + id + "' tidak ditemukan.");
+        console.error("Audio tidak ditemukan:", id);
         return;
     }
 
     const allAudio = document.querySelectorAll("audio");
+    const allButtons = document.querySelectorAll(".play-btn");
+
+
+    /* Hentikan lagu lain */
 
     allAudio.forEach(function (item) {
 
@@ -23,7 +32,7 @@ function playMusic(id, button) {
     });
 
 
-    const allButtons = document.querySelectorAll(".play-btn");
+    /* Reset tombol lain */
 
     allButtons.forEach(function (item) {
 
@@ -34,6 +43,8 @@ function playMusic(id, button) {
 
     });
 
+
+    /* Play / Pause */
 
     if (audio.paused) {
 
@@ -51,6 +62,14 @@ function playMusic(id, button) {
                     error
                 );
 
+                button.innerHTML = "▶ Play";
+                button.classList.remove("playing");
+
+                alert(
+                    "Lagu tidak dapat diputar.\n\n" +
+                    "Periksa nama file dan lokasi lagu."
+                );
+
             });
 
     } else {
@@ -63,6 +82,8 @@ function playMusic(id, button) {
     }
 
 
+    /* Saat lagu selesai */
+
     audio.onended = function () {
 
         button.innerHTML = "▶ Play";
@@ -70,111 +91,48 @@ function playMusic(id, button) {
 
     };
 
+
+    /* Jika file audio error */
+
+    audio.onerror = function () {
+
+        console.error(
+            "File audio bermasalah:",
+            audio.src
+        );
+
+    };
+
 }
 
 
-/* =========================
+/* =====================================================
    MOBILE MENU
-========================= */
+===================================================== */
 
 function toggleMenu() {
 
     const navMenu =
         document.querySelector(".nav-menu");
 
-    if (navMenu) {
-        navMenu.classList.toggle("show");
-    }
+    if (!navMenu) return;
+
+    navMenu.classList.toggle("show");
 
 }
 
 
-/* =========================
-   DARK / LIGHT MODE
-========================= */
-
-function toggleTheme() {
-
-    const body = document.body;
-    const button =
-        document.querySelector(".theme-toggle");
-
-    body.classList.toggle("light-mode");
-
-
-    if (body.classList.contains("light-mode")) {
-
-        localStorage.setItem("theme", "light");
-
-        if (button) {
-            button.innerHTML = "🌙";
-        }
-
-    } else {
-
-        localStorage.setItem("theme", "dark");
-
-        if (button) {
-            button.innerHTML = "☀️";
-        }
-
-    }
-
-}
-
-
-/* =========================
-   LOAD THEME
-========================= */
-
-function loadTheme() {
-
-    const savedTheme =
-        localStorage.getItem("theme");
-
-    const button =
-        document.querySelector(".theme-toggle");
-
-
-    if (savedTheme === "light") {
-
-        document.body.classList.add("light-mode");
-
-        if (button) {
-            button.innerHTML = "🌙";
-        }
-
-    } else {
-
-        document.body.classList.remove("light-mode");
-
-        if (button) {
-            button.innerHTML = "☀️";
-        }
-
-    }
-
-}
-
-
-/* =========================
-   PAGE LOAD
-========================= */
+/* Tutup menu ketika klik link */
 
 document.addEventListener(
     "DOMContentLoaded",
     function () {
 
-        loadTheme();
-
-
-        /* CLOSE MOBILE MENU */
+        const navMenu =
+            document.querySelector(".nav-menu");
 
         const navLinks =
             document.querySelectorAll(".nav-menu a");
-
-        const navMenu =
-            document.querySelector(".nav-menu");
 
 
         navLinks.forEach(function (link) {
@@ -195,97 +153,249 @@ document.addEventListener(
     }
 );
 
-/* =========================
-   LIGHTBOX
-========================= */
+
+/* =====================================================
+   THEME SELECTOR
+===================================================== */
+
+function toggleTheme() {
+
+    const menu =
+        document.getElementById("theme-menu");
+
+    if (!menu) return;
+
+    menu.classList.toggle("show");
+
+}
+
+
+function setTheme(theme) {
+
+    const themes = [
+        "theme-black",
+        "theme-white",
+        "theme-midnight",
+        "theme-sunset"
+    ];
+
+
+    /* Hapus tema lama */
+
+    document.body.classList.remove(...themes);
+
+
+    /* Cek tema */
+
+    const allowedThemes = [
+        "black",
+        "white",
+        "midnight",
+        "sunset"
+    ];
+
+
+    if (!allowedThemes.includes(theme)) {
+        theme = "black";
+    }
+
+
+    /* Tambahkan tema baru */
+
+    document.body.classList.add(
+        "theme-" + theme
+    );
+
+
+    /* Simpan */
+
+    localStorage.setItem(
+        "veertienTheme",
+        theme
+    );
+
+
+    /* Tutup menu */
+
+    const menu =
+        document.getElementById("theme-menu");
+
+    if (menu) {
+        menu.classList.remove("show");
+    }
+
+}
+
+
+/* Load theme */
+
+function loadTheme() {
+
+    const savedTheme =
+        localStorage.getItem("veertienTheme") ||
+        "black";
+
+    setTheme(savedTheme);
+
+}
+
+
+/* Tutup theme menu jika klik di luar */
+
+document.addEventListener(
+    "click",
+    function (event) {
+
+        const selector =
+            document.querySelector(".theme-selector");
+
+        const menu =
+            document.getElementById("theme-menu");
+
+
+        if (
+            selector &&
+            menu &&
+            !selector.contains(event.target)
+        ) {
+
+            menu.classList.remove("show");
+
+        }
+
+    }
+);
+
+
+/* =====================================================
+   MOMENT LIGHTBOX
+===================================================== */
 
 let currentPhoto = 0;
-
 let photos = [];
 
 
-/* BUKA LIGHTBOX */
+function openLightbox(
+    index,
+    image,
+    caption
+) {
 
-function openLightbox(index, image, caption) {
+    const lightbox =
+        document.getElementById("lightbox");
 
-    currentPhoto = index;
+    if (!lightbox) return;
 
-    photos = [];
 
     const cards =
         document.querySelectorAll(".moment-card");
+
+
+    photos = [];
+
 
     cards.forEach(function (card) {
 
         const img =
             card.querySelector("img");
 
+        if (!img) return;
+
+
         const title =
             card.querySelector("span");
 
-        if (img) {
 
-            photos.push({
-                image: img.src,
-                caption: title
+        photos.push({
+
+            image: img.src,
+
+            caption:
+                title
                     ? title.innerText
                     : ""
-            });
 
-        }
+        });
 
     });
 
 
-    showPhoto();
-
-    document
-        .getElementById("lightbox")
-        .classList.add("show");
-
-    document.body.style.overflow = "hidden";
-}
+    if (photos.length === 0) return;
 
 
-/* TAMPILKAN FOTO */
+    currentPhoto = index;
 
-function showPhoto() {
 
-    if (photos.length === 0) {
-        return;
+    if (
+        currentPhoto < 0 ||
+        currentPhoto >= photos.length
+    ) {
+        currentPhoto = 0;
     }
 
 
+    showPhoto();
+
+
+    lightbox.classList.add("show");
+
+    document.body.style.overflow =
+        "hidden";
+
+}
+
+
+function showPhoto() {
+
+    if (photos.length === 0) return;
+
+
     const image =
-        document.getElementById("lightbox-image");
+        document.getElementById(
+            "lightbox-image"
+        );
 
     const caption =
-        document.getElementById("lightbox-caption");
+        document.getElementById(
+            "lightbox-caption"
+        );
+
+
+    if (!image) return;
 
 
     image.src =
         photos[currentPhoto].image;
 
-    caption.innerText =
-        photos[currentPhoto].caption;
+
+    if (caption) {
+
+        caption.innerText =
+            photos[currentPhoto].caption;
+
+    }
 
 }
 
 
-/* FOTO BERIKUT / SEBELUMNYA */
-
 function changePhoto(direction) {
+
+    if (photos.length === 0) return;
+
 
     currentPhoto += direction;
 
 
-    if (currentPhoto >= photos.length) {
+    if (
+        currentPhoto >= photos.length
+    ) {
         currentPhoto = 0;
     }
 
 
     if (currentPhoto < 0) {
-        currentPhoto = photos.length - 1;
+        currentPhoto =
+            photos.length - 1;
     }
 
 
@@ -294,85 +404,185 @@ function changePhoto(direction) {
 }
 
 
-/* TUTUP */
-
 function closeLightbox() {
 
-    document
-        .getElementById("lightbox")
-        .classList.remove("show");
+    const lightbox =
+        document.getElementById("lightbox");
 
-    document.body.style.overflow = "auto";
+
+    if (!lightbox) return;
+
+
+    lightbox.classList.remove("show");
+
+    document.body.style.overflow =
+        "";
 
 }
 
 
-/* KLIK AREA GELAP UNTUK MENUTUP */
+/* =====================================================
+   MEMBER LIGHTBOX
+===================================================== */
+
+function openMemberLightbox(
+    image,
+    name,
+    number
+) {
+
+    const lightbox =
+        document.getElementById(
+            "member-lightbox"
+        );
+
+    const imageElement =
+        document.getElementById(
+            "member-lightbox-image"
+        );
+
+    const nameElement =
+        document.getElementById(
+            "member-lightbox-name"
+        );
+
+    const numberElement =
+        document.getElementById(
+            "member-lightbox-number"
+        );
+
+
+    if (
+        !lightbox ||
+        !imageElement
+    ) {
+        console.error(
+            "Member lightbox tidak ditemukan."
+        );
+
+        return;
+    }
+
+
+    imageElement.src = image;
+
+
+    if (nameElement) {
+        nameElement.innerText =
+            name;
+    }
+
+
+    if (numberElement) {
+        numberElement.innerText =
+            number || "";
+    }
+
+
+    lightbox.classList.add("show");
+
+    document.body.style.overflow =
+        "hidden";
+
+}
+
+
+function closeMemberLightbox() {
+
+    const lightbox =
+        document.getElementById(
+            "member-lightbox"
+        );
+
+
+    if (!lightbox) return;
+
+
+    lightbox.classList.remove("show");
+
+    document.body.style.overflow =
+        "";
+
+}
+
+
+/* =====================================================
+   LIGHTBOX CLICK
+===================================================== */
 
 document.addEventListener(
     "click",
     function (event) {
 
-        const lightbox =
-            document.getElementById("lightbox");
+        const momentLightbox =
+            document.getElementById(
+                "lightbox"
+            );
+
+        const memberLightbox =
+            document.getElementById(
+                "member-lightbox"
+            );
+
 
         if (
-            event.target === lightbox
+            momentLightbox &&
+            event.target === momentLightbox
         ) {
+
             closeLightbox();
+
+        }
+
+
+        if (
+            memberLightbox &&
+            event.target === memberLightbox
+        ) {
+
+            closeMemberLightbox();
+
         }
 
     }
 );
 
 
-/* KEYBOARD */
+/* =====================================================
+   LOADING SCREEN
+===================================================== */
 
 document.addEventListener(
-    "keydown",
-    function (event) {
+    "DOMContentLoaded",
+    function () {
 
-        const lightbox =
-            document.getElementById("lightbox");
-
-        if (
-            !lightbox ||
-            !lightbox.classList.contains("show")
-        ) {
-            return;
-        }
+        const loader =
+            document.getElementById(
+                "loading-screen"
+            );
 
 
-        if (event.key === "ArrowRight") {
-            changePhoto(1);
-        }
+        if (!loader) return;
 
 
-        if (event.key === "ArrowLeft") {
-            changePhoto(-1);
-        }
+        setTimeout(
+            function () {
 
+                loader.classList.add(
+                    "hide"
+                );
 
-        if (event.key === "Escape") {
-            closeLightbox();
-        }
+            },
+            800
+        );
 
     }
 );
 
-document.addEventListener("DOMContentLoaded", function () {
-    const loader = document.getElementById("loading-screen");
 
-    if (loader) {
-        setTimeout(function () {
-            loader.classList.add("hide");
-        }, 1200);
-    }
-});
-
-/* =========================
+/* =====================================================
    GUESTBOOK
-========================= */
+===================================================== */
 
 document.addEventListener(
     "DOMContentLoaded",
@@ -394,20 +604,42 @@ document.addEventListener(
         }
 
 
-        function showMessages() {
+        function getMessages() {
 
-            const messages =
-                JSON.parse(
+            try {
+
+                return JSON.parse(
                     localStorage.getItem(
                         "veertienMessages"
                     )
                 ) || [];
 
+            } catch (error) {
+
+                console.error(
+                    "Data guestbook rusak:",
+                    error
+                );
+
+                return [];
+
+            }
+
+        }
+
+
+        function showMessages() {
+
+            const messages =
+                getMessages();
+
 
             container.innerHTML = "";
 
 
-            if (messages.length === 0) {
+            if (
+                messages.length === 0
+            ) {
 
                 container.innerHTML =
                     "<p>Tuliskan pesan pertama!</p>";
@@ -425,26 +657,37 @@ document.addEventListener(
                             "div"
                         );
 
+
                     div.className =
                         "guest-message";
 
 
                     div.innerHTML = `
+
                         <strong>
-                            ${escapeHTML(message.name)}
+                            ${escapeHTML(
+                                message.name
+                            )}
                         </strong>
 
                         <p>
-                            ${escapeHTML(message.text)}
+                            ${escapeHTML(
+                                message.text
+                            )}
                         </p>
 
                         <span class="guest-date">
-                            ${escapeHTML(message.date)}
+                            ${escapeHTML(
+                                message.date
+                            )}
                         </span>
+
                     `;
 
 
-                    container.appendChild(div);
+                    container.appendChild(
+                        div
+                    );
 
                 }
             );
@@ -459,29 +702,42 @@ document.addEventListener(
                 event.preventDefault();
 
 
-                const name =
+                const nameInput =
                     document.getElementById(
                         "guest-name"
-                    ).value.trim();
+                    );
 
-
-                const message =
+                const messageInput =
                     document.getElementById(
                         "guest-message"
-                    ).value.trim();
+                    );
 
 
-                if (!name || !message) {
+                if (
+                    !nameInput ||
+                    !messageInput
+                ) {
+                    return;
+                }
+
+
+                const name =
+                    nameInput.value.trim();
+
+                const message =
+                    messageInput.value.trim();
+
+
+                if (
+                    !name ||
+                    !message
+                ) {
                     return;
                 }
 
 
                 const messages =
-                    JSON.parse(
-                        localStorage.getItem(
-                            "veertienMessages"
-                        )
-                    ) || [];
+                    getMessages();
 
 
                 messages.unshift({
@@ -492,7 +748,7 @@ document.addEventListener(
 
                     date:
                         new Date()
-                        .toLocaleDateString(
+                        .toLocaleString(
                             "id-ID"
                         )
 
@@ -500,8 +756,13 @@ document.addEventListener(
 
 
                 localStorage.setItem(
+
                     "veertienMessages",
-                    JSON.stringify(messages)
+
+                    JSON.stringify(
+                        messages
+                    )
+
                 );
 
 
@@ -519,430 +780,706 @@ document.addEventListener(
 );
 
 
-/* AMANKAN TEKS PENGUNJUNG */
+/* =====================================================
+   ESCAPE HTML
+===================================================== */
 
 function escapeHTML(text) {
 
     const div =
         document.createElement("div");
 
-    div.textContent = text;
+    div.textContent =
+        text;
 
     return div.innerHTML;
 
 }
 
+
+/* =====================================================
+   SLIDESHOW
+===================================================== */
+
 let currentSlide = 0;
+
 
 function showSlide(index) {
 
-    const slides = document.querySelectorAll(".slide");
-    const dots = document.querySelectorAll(".dot");
-
-    if (slides.length === 0) return;
-
-    if (index >= slides.length) {
-        currentSlide = 0;
-    } else if (index < 0) {
-        currentSlide = slides.length - 1;
-    } else {
-        currentSlide = index;
-    }
-
-    slides.forEach(function (slide) {
-        slide.classList.remove("active");
-    });
-
-    dots.forEach(function (dot) {
-        dot.classList.remove("active");
-    });
-
-    slides[currentSlide].classList.add("active");
-
-    if (dots[currentSlide]) {
-        dots[currentSlide].classList.add("active");
-    }
-}
-
-function changeSlide(direction) {
-    showSlide(currentSlide + direction);
-}
-
-setInterval(function () {
-    showSlide(currentSlide + 1);
-}, 5000);
-
-const particleCanvas = document.getElementById("particle-canvas");
-
-if (particleCanvas) {
-
-    const particleCtx = particleCanvas.getContext("2d");
-
-    let particles = [];
-    let mouse = {
-        x: null,
-        y: null
-    };
-
-    function resizeParticleCanvas() {
-        particleCanvas.width = window.innerWidth;
-        particleCanvas.height = window.innerHeight;
-    }
-
-    resizeParticleCanvas();
-
-    window.addEventListener("resize", resizeParticleCanvas);
-
-    window.addEventListener("mousemove", function (event) {
-        mouse.x = event.x;
-        mouse.y = event.y;
-    });
-
-    window.addEventListener("mouseout", function () {
-        mouse.x = null;
-        mouse.y = null;
-    });
-
-    class Particle {
-
-        constructor() {
-
-            this.x = Math.random() * particleCanvas.width;
-            this.y = Math.random() * particleCanvas.height;
-
-            this.size = Math.random() * 2 + 1;
-
-            this.speedX = (Math.random() - 0.5) * 0.5;
-            this.speedY = (Math.random() - 0.5) * 0.5;
-        }
-
-        update() {
-
-            this.x += this.speedX;
-            this.y += this.speedY;
-
-            if (this.x < 0 || this.x > particleCanvas.width) {
-                this.speedX *= -1;
-            }
-
-            if (this.y < 0 || this.y > particleCanvas.height) {
-                this.speedY *= -1;
-            }
-
-            if (mouse.x !== null && mouse.y !== null) {
-
-                const dx = mouse.x - this.x;
-                const dy = mouse.y - this.y;
-
-                const distance = Math.sqrt(
-                    dx * dx + dy * dy
-                );
-
-                if (distance < 120) {
-
-                    this.x -= dx / 40;
-                    this.y -= dy / 40;
-                }
-            }
-        }
-
-        draw() {
-
-            particleCtx.beginPath();
-
-            particleCtx.arc(
-                this.x,
-                this.y,
-                this.size,
-                0,
-                Math.PI * 2
-            );
-
-            particleCtx.fillStyle = "#ffffff";
-
-            particleCtx.globalAlpha = 0.5;
-
-            particleCtx.fill();
-
-            particleCtx.globalAlpha = 1;
-        }
-    }
-
-    function createParticles() {
-
-        particles = [];
-
-        const amount =
-            window.innerWidth < 768 ? 40 : 80;
-
-        for (let i = 0; i < amount; i++) {
-            particles.push(new Particle());
-        }
-    }
-
-    createParticles();
-
-    window.addEventListener("resize", createParticles);
-
-    function connectParticles() {
-
-        for (let a = 0; a < particles.length; a++) {
-
-            for (let b = a + 1; b < particles.length; b++) {
-
-                const dx =
-                    particles[a].x - particles[b].x;
-
-                const dy =
-                    particles[a].y - particles[b].y;
-
-                const distance =
-                    Math.sqrt(dx * dx + dy * dy);
-
-                if (distance < 100) {
-
-                    particleCtx.strokeStyle = "#ffffff";
-
-                    particleCtx.globalAlpha =
-                        1 - distance / 100;
-
-                    particleCtx.lineWidth = 0.5;
-
-                    particleCtx.beginPath();
-
-                    particleCtx.moveTo(
-                        particles[a].x,
-                        particles[a].y
-                    );
-
-                    particleCtx.lineTo(
-                        particles[b].x,
-                        particles[b].y
-                    );
-
-                    particleCtx.stroke();
-
-                    particleCtx.globalAlpha = 1;
-                }
-            }
-        }
-    }
-
-    function animateParticles() {
-
-        particleCtx.clearRect(
-            0,
-            0,
-            particleCanvas.width,
-            particleCanvas.height
+    const slides =
+        document.querySelectorAll(
+            ".slide"
         );
 
-        particles.forEach(function (particle) {
-            particle.update();
-            particle.draw();
-        });
+    const dots =
+        document.querySelectorAll(
+            ".dot"
+        );
 
-        connectParticles();
 
-        requestAnimationFrame(animateParticles);
-    }
-
-    animateParticles();
-}
-
-function openMemberLightbox(image, name, number) {
-
-    const lightbox =
-        document.getElementById("member-lightbox");
-
-    const imageElement =
-        document.getElementById("member-lightbox-image");
-
-    const nameElement =
-        document.getElementById("member-lightbox-name");
-
-    const numberElement =
-        document.getElementById("member-lightbox-number");
-
-    if (!lightbox) return;
-
-    imageElement.src = image;
-    nameElement.innerText = name;
-    numberElement.innerText = number;
-
-    lightbox.classList.add("show");
-
-    document.body.style.overflow = "hidden";
-}
-
-function closeMemberLightbox() {
-
-    const lightbox =
-        document.getElementById("member-lightbox");
-
-    if (!lightbox) return;
-
-    lightbox.classList.remove("show");
-
-    document.body.style.overflow = "auto";
-}
-
-document.addEventListener("click", function(event) {
-
-    const lightbox =
-        document.getElementById("member-lightbox");
-
-    if (lightbox && event.target === lightbox) {
-        closeMemberLightbox();
-    }
-
-});
-
-document.addEventListener("keydown", function(event) {
-
-    // ESC = tutup lightbox
-    if (event.key === "Escape") {
-
-        closeLightbox();
-        closeMemberLightbox();
-
+    if (slides.length === 0) {
         return;
     }
 
-
-    // Jika sedang mengetik di input,
-    // shortcut tidak dijalankan
-    const tag = event.target.tagName.toLowerCase();
 
     if (
-        tag === "input" ||
-        tag === "textarea"
+        index >= slides.length
     ) {
-        return;
+
+        currentSlide = 0;
+
+    } else if (
+        index < 0
+    ) {
+
+        currentSlide =
+            slides.length - 1;
+
+    } else {
+
+        currentSlide = index;
+
     }
 
 
-    // SPACE = play / pause musik
-    if (event.code === "Space") {
+    slides.forEach(
+        function (slide) {
 
-        event.preventDefault();
+            slide.classList.remove(
+                "active"
+            );
 
-        if (typeof toggleGlobalMusic === "function") {
-            toggleGlobalMusic();
         }
-
-        return;
-    }
-
-
-    // → = lagu berikutnya
-    if (event.key === "ArrowRight") {
-
-        if (typeof nextSong === "function") {
-            nextSong();
-        }
-
-        return;
-    }
-
-
-    // ← = lagu sebelumnya
-    if (event.key === "ArrowLeft") {
-
-        if (typeof previousSong === "function") {
-            previousSong();
-        }
-
-        return;
-    }
-
-});
-
-/* =========================
-   THEME SELECTOR
-========================= */
-
-function toggleTheme() {
-    const menu = document.getElementById("theme-menu");
-
-    if (menu) {
-        menu.classList.toggle("show");
-    }
-}
-
-function setTheme(theme) {
-
-    document.body.classList.remove(
-        "theme-black",
-        "theme-white",
-        "theme-midnight",
-        "theme-sunset"
     );
 
-    document.body.classList.add("theme-" + theme);
 
-    localStorage.setItem("veertienTheme", theme);
+    dots.forEach(
+        function (dot) {
 
-    const menu = document.getElementById("theme-menu");
+            dot.classList.remove(
+                "active"
+            );
 
-    if (menu) {
-        menu.classList.remove("show");
+        }
+    );
+
+
+    slides[
+        currentSlide
+    ].classList.add("active");
+
+
+    if (dots[currentSlide]) {
+
+        dots[
+            currentSlide
+        ].classList.add("active");
+
     }
+
 }
 
-function loadTheme() {
 
-    const savedTheme =
-        localStorage.getItem("veertienTheme") || "black";
+function changeSlide(direction) {
 
-    setTheme(savedTheme);
+    showSlide(
+        currentSlide + direction
+    );
+
 }
 
-document.addEventListener("click", function(event) {
 
-    const selector =
-        document.querySelector(".theme-selector");
+/* Hanya jalankan slideshow jika ada */
 
-    const menu =
-        document.getElementById("theme-menu");
+document.addEventListener(
+    "DOMContentLoaded",
+    function () {
 
-    if (
-        selector &&
-        menu &&
-        !selector.contains(event.target)
-    ) {
-        menu.classList.remove("show");
+        const slides =
+            document.querySelectorAll(
+                ".slide"
+            );
+
+
+        if (slides.length === 0) {
+            return;
+        }
+
+
+        showSlide(0);
+
+
+        setInterval(
+            function () {
+
+                showSlide(
+                    currentSlide + 1
+                );
+
+            },
+            5000
+        );
+
     }
-});
+);
 
-loadTheme();
-/* =========================
+
+/* =====================================================
+   PARTICLE BACKGROUND
+===================================================== */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function () {
+
+        const particleCanvas =
+            document.getElementById(
+                "particle-canvas"
+            );
+
+
+        if (!particleCanvas) {
+            return;
+        }
+
+
+        const particleCtx =
+            particleCanvas.getContext(
+                "2d"
+            );
+
+
+        let particles = [];
+
+
+        const mouse = {
+
+            x: null,
+
+            y: null
+
+        };
+
+
+        function resizeParticleCanvas() {
+
+            particleCanvas.width =
+                window.innerWidth;
+
+            particleCanvas.height =
+                window.innerHeight;
+
+        }
+
+
+        resizeParticleCanvas();
+
+
+        window.addEventListener(
+            "resize",
+            resizeParticleCanvas
+        );
+
+
+        window.addEventListener(
+            "mousemove",
+            function (event) {
+
+                mouse.x =
+                    event.clientX;
+
+                mouse.y =
+                    event.clientY;
+
+            }
+        );
+
+
+        window.addEventListener(
+            "mouseout",
+            function () {
+
+                mouse.x = null;
+                mouse.y = null;
+
+            }
+        );
+
+
+        class Particle {
+
+            constructor() {
+
+                this.x =
+                    Math.random() *
+                    particleCanvas.width;
+
+                this.y =
+                    Math.random() *
+                    particleCanvas.height;
+
+
+                this.size =
+                    Math.random() * 2 + 1;
+
+
+                this.speedX =
+                    (Math.random() - 0.5) *
+                    0.5;
+
+
+                this.speedY =
+                    (Math.random() - 0.5) *
+                    0.5;
+
+            }
+
+
+            update() {
+
+                this.x +=
+                    this.speedX;
+
+                this.y +=
+                    this.speedY;
+
+
+                if (
+                    this.x < 0 ||
+                    this.x >
+                    particleCanvas.width
+                ) {
+
+                    this.speedX *= -1;
+
+                }
+
+
+                if (
+                    this.y < 0 ||
+                    this.y >
+                    particleCanvas.height
+                ) {
+
+                    this.speedY *= -1;
+
+                }
+
+
+                if (
+                    mouse.x !== null &&
+                    mouse.y !== null
+                ) {
+
+                    const dx =
+                        mouse.x - this.x;
+
+                    const dy =
+                        mouse.y - this.y;
+
+
+                    const distance =
+                        Math.sqrt(
+                            dx * dx +
+                            dy * dy
+                        );
+
+
+                    if (
+                        distance < 120
+                    ) {
+
+                        this.x -=
+                            dx / 40;
+
+                        this.y -=
+                            dy / 40;
+
+                    }
+
+                }
+
+            }
+
+
+            draw() {
+
+                particleCtx.beginPath();
+
+
+                particleCtx.arc(
+
+                    this.x,
+
+                    this.y,
+
+                    this.size,
+
+                    0,
+
+                    Math.PI * 2
+
+                );
+
+
+                particleCtx.fillStyle =
+                    "#ffffff";
+
+
+                particleCtx.globalAlpha =
+                    0.5;
+
+
+                particleCtx.fill();
+
+
+                particleCtx.globalAlpha =
+                    1;
+
+            }
+
+        }
+
+
+        function createParticles() {
+
+            particles = [];
+
+
+            const amount =
+                window.innerWidth < 768
+                    ? 40
+                    : 80;
+
+
+            for (
+                let i = 0;
+                i < amount;
+                i++
+            ) {
+
+                particles.push(
+                    new Particle()
+                );
+
+            }
+
+        }
+
+
+        createParticles();
+
+
+        window.addEventListener(
+            "resize",
+            createParticles
+        );
+
+
+        function connectParticles() {
+
+            for (
+                let a = 0;
+                a < particles.length;
+                a++
+            ) {
+
+                for (
+                    let b = a + 1;
+                    b < particles.length;
+                    b++
+                ) {
+
+                    const dx =
+                        particles[a].x -
+                        particles[b].x;
+
+
+                    const dy =
+                        particles[a].y -
+                        particles[b].y;
+
+
+                    const distance =
+                        Math.sqrt(
+                            dx * dx +
+                            dy * dy
+                        );
+
+
+                    if (
+                        distance < 100
+                    ) {
+
+                        particleCtx.strokeStyle =
+                            "#ffffff";
+
+
+                        particleCtx.globalAlpha =
+                            1 -
+                            distance / 100;
+
+
+                        particleCtx.lineWidth =
+                            0.5;
+
+
+                        particleCtx.beginPath();
+
+
+                        particleCtx.moveTo(
+
+                            particles[a].x,
+
+                            particles[a].y
+
+                        );
+
+
+                        particleCtx.lineTo(
+
+                            particles[b].x,
+
+                            particles[b].y
+
+                        );
+
+
+                        particleCtx.stroke();
+
+
+                        particleCtx.globalAlpha =
+                            1;
+
+                    }
+
+                }
+
+            }
+
+        }
+
+
+        function animateParticles() {
+
+            particleCtx.clearRect(
+
+                0,
+
+                0,
+
+                particleCanvas.width,
+
+                particleCanvas.height
+
+            );
+
+
+            particles.forEach(
+                function (particle) {
+
+                    particle.update();
+
+                    particle.draw();
+
+                }
+            );
+
+
+            connectParticles();
+
+
+            requestAnimationFrame(
+                animateParticles
+            );
+
+        }
+
+
+        animateParticles();
+
+    }
+);
+
+
+/* =====================================================
+   KEYBOARD SHORTCUT
+===================================================== */
+
+document.addEventListener(
+    "keydown",
+    function (event) {
+
+        const tag =
+            event.target.tagName
+                .toLowerCase();
+
+
+        /* Jangan jalankan shortcut
+           saat mengetik */
+
+        if (
+            tag === "input" ||
+            tag === "textarea" ||
+            tag === "select"
+        ) {
+
+            return;
+
+        }
+
+
+        /* ESC */
+
+        if (
+            event.key === "Escape"
+        ) {
+
+            closeLightbox();
+
+            closeMemberLightbox();
+
+            return;
+
+        }
+
+
+        /* MOMENT LIGHTBOX */
+
+        const momentLightbox =
+            document.getElementById(
+                "lightbox"
+            );
+
+
+        if (
+            momentLightbox &&
+            momentLightbox.classList.contains(
+                "show"
+            )
+        ) {
+
+            if (
+                event.key === "ArrowRight"
+            ) {
+
+                changePhoto(1);
+
+                return;
+
+            }
+
+
+            if (
+                event.key === "ArrowLeft"
+            ) {
+
+                changePhoto(-1);
+
+                return;
+
+            }
+
+        }
+
+
+        /* SPACE = MUSIC */
+
+        if (
+            event.code === "Space"
+        ) {
+
+            event.preventDefault();
+
+
+            const playing =
+                document.querySelector(
+                    "audio:not(:paused)"
+                );
+
+
+            if (playing) {
+
+                const button =
+                    document.querySelector(
+                        ".play-btn.playing"
+                    );
+
+
+                playing.pause();
+
+
+                if (button) {
+
+                    button.innerHTML =
+                        "▶ Play";
+
+                    button.classList.remove(
+                        "playing"
+                    );
+
+                }
+
+            }
+
+        }
+
+    }
+);
+
+
+/* =====================================================
    PWA / SERVICE WORKER
-========================= */
+===================================================== */
 
-if ("serviceWorker" in navigator) {
+if (
+    "serviceWorker" in navigator
+) {
 
-    window.addEventListener("load", function () {
+    window.addEventListener(
+        "load",
+        function () {
 
-        navigator.serviceWorker
-            .register("service-worker.js")
-            .then(function (registration) {
+            navigator.serviceWorker
+                .register(
+                    "service-worker.js"
+                )
+                .then(
+                    function (registration) {
 
-                console.log(
-                    "Service Worker aktif:",
-                    registration.scope
+                        console.log(
+                            "Service Worker aktif:",
+                            registration.scope
+                        );
+
+                    }
+                )
+                .catch(
+                    function (error) {
+
+                        console.error(
+                            "Service Worker gagal:",
+                            error
+                        );
+
+                    }
                 );
 
-            })
-            .catch(function (error) {
-
-                console.error(
-                    "Service Worker gagal:",
-                    error
-                );
-
-            });
-
-    });
+        }
+    );
 
 }
+
+
+/* =====================================================
+   INITIALIZE
+===================================================== */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function () {
+
+        loadTheme();
+
+    }
+);
