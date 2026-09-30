@@ -554,6 +554,24 @@ h2 span {
     color: var(--text);
 }
 
+@media (hover: none), (pointer: coarse) {
+    .member-card:hover {
+        transform: none;
+        background: var(--bg-secondary);
+        color: var(--text);
+    }
+
+    .member-card:hover .member-photo {
+        transform: none;
+    }
+
+    .play-btn:hover {
+        transform: none;
+        background: var(--button-bg);
+        color: var(--button-text);
+    }
+}
+
 /* =========================================================
    CONTACT
 ========================================================= */
